@@ -1,0 +1,3481 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="S&H ARABIAN MANDI RESTAURANT POS System - Professional point of sale billing software for mandi restaurants. Features thermal printing, payment tracking (Cash/Card/UPI), delivery platform integration (Zomato/Swiggy), and custom item billing. Located at sangivalasa, Vishakapatnam, AP.">
+<meta name="keywords" content="POS system, mandi restaurant, biryani, tandoori, mandi billing, restaurant billing software, thermal printer, Vishakapatnam restaurants, Zomato orders, Swiggy orders, cloud kitchen POS, food billing system">
+<meta name="author" content="CSE 88 DEV">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffd54f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="S&H ARABIAN MANDI RESTAURANT POS">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="S&H ARABIAN MANDI RESTAURANT - Mandi | Chinese | Tandoori | Meals | Snacks | Biryani POS System">
+<meta property="og:description" content="Professional POS billing system for mandi restaurants with thermal printing, payment tracking, and delivery integration">
+<meta property="og:site_name" content="S&H ARABIAN MANDI RESTAURANT">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="S&H ARABIAN MANDI RESTAURANT - Mandi | Chinese | Tandoori | Meals | Snacks | Biryani POS">
+<meta name="twitter:description" content="Professional restaurant POS system with thermal printing and delivery integration">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://www.srivengamambafoodcourt.com/">
+
+<title>S&H ARABIAN MANDI RESTAURANT &ndash; Mandi | Chinese | Tandoori | Meals | Snacks | Biryani | Billing System</title>
+
+<style>
+/* Ensure bill action buttons are always visible and responsive on mobile */
+@media (max-width: 600px) {
+  .bill {
+    padding-bottom: 70px !important;
+    position: relative;
+  }
+  .actions {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.25);
+    padding: 8px 8px 12px 8px !important;
+    border-radius: 0;
+    width: 100vw;
+    margin: 0;
+    gap: 8px;
+    display: flex;
+  }
+  .actions button {
+    min-width: 0;
+    font-size: 15px;
+    padding: 12px 0;
+    flex: 1 1 0;
+  }
+}
+/* --- Fix Settings button and info alignment on small screens --- */
+@media (max-width: 900px) {
+  .header-top-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .header-icons {
+    justify-content: flex-end;
+    width: 100%;
+    display: flex;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 600px) {
+  .header-top-row {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 0 4px;
+  }
+  .header-icons {
+    justify-content: flex-end;
+    width: 100%;
+    display: flex;
+    margin-bottom: 0;
+  }
+  .settings-btn {
+    float: right;
+    margin-left: auto;
+    margin-right: 0;
+    display: block;
+  }
+  .header-info {
+    width: 100%;
+    padding: 0 2px;
+  }
+  @media (max-width: 600px) {
+    .header-info {
+      text-align: center !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .location, .owner {
+      text-align: center !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100%;
+      margin: 0 auto 2px auto;
+      padding: 0;
+    }
+    .owner > div {
+      justify-content: center !important;
+      text-align: center !important;
+      width: 100%;
+      margin: 0 auto 2px auto;
+      padding: 0;
+    }
+  }
+}
+/* --- Enhanced Responsive Design for All Main Elements --- */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px;
+  }
+  .left, .bill {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .menu {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+  }
+  .left, .bill {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .menu {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+  .tabs {
+    gap: 4px;
+    padding: 6px;
+    flex-wrap: wrap;
+  }
+  .tabs button {
+    min-width: 80px;
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+  .menu-item {
+    min-height: 80px;
+    padding: 12px 8px;
+  }
+  .item-name, .item-price {
+    font-size: 12px;
+  }
+  .bill-header b {
+    font-size: 16px;
+  }
+  .bill-subtitle {
+    font-size: 12px;
+  }
+  .datetime {
+    font-size: 10px;
+  }
+  .actions button {
+    padding: 8px;
+    font-size: 13px;
+  }
+  .add-custom-btn {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+    font-size: 28px;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+  .modal-header h2 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 8px;
+  }
+  .header h1 {
+    font-size: 16px;
+    padding: 0 4px;
+  }
+  .header h3 {
+    font-size: 11px;
+    padding: 0 4px;
+  }
+  .header-info {
+    font-size: 10px;
+    padding: 0 2px;
+    gap: 2px;
+  }
+  .location, .owner {
+    font-size: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+  }
+  .bill {
+    padding: 8px;
+    max-height: 65vh;
+    overflow-y: auto;
+  }
+  .bill-items {
+    max-height: 35vh;
+  }
+  .footer {
+    font-size: 9px;
+    margin-top: 2px;
+    padding-top: 2px;
+  }
+}
+/* Responsive header improvements for server index.html */
+@media (max-width: 900px) {
+  .header-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 0 8px;
+  }
+  .header-icons {
+    justify-content: flex-start;
+    margin-bottom: 8px;
+  }
+  .header-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 0 8px;
+  }
+  .owner {
+    text-align: left !important;
+    padding-right: 0 !important;
+    margin-top: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 18px;
+    padding: 0 10px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .header h3 {
+    font-size: 13px;
+    padding: 0 10px;
+    text-align: center;
+  }
+  .header-info {
+    font-size: 11px;
+    padding: 0 4px;
+    gap: 4px;
+  }
+  .location, .owner {
+    font-size: 11px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .header-icons {
+    min-width: 0;
+    margin-bottom: 6px;
+  }
+  .settings-btn {
+    min-width: 60px;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+:root{
+--bg:#0F120D;
+--panel:#1B1F17;
+--card-bg:#1B1F17;
+--text:#FFFFFF;
+--muted:#A1A1AA;
+--accent:#A3E635;
+--primary:#4D7C0F;
+--danger:#C62828;
+--gold:var(--accent);
+--gold-dark:var(--accent);
+--red:var(--danger);
+--hover-glow:rgba(163, 230, 53, 0.18);
+}
+
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box;}
+html, body{
+margin:0;
+padding:0;
+min-height:100%;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background:linear-gradient(135deg, var(--bg) 0%, var(--panel) 100%);
+color:var(--text);
+}
+
+@media screen{
+body{zoom:1.08;}
+}
+
+/* ===== HEADER ===== */
+.header{
+flex-shrink:0;
+text-align:center;
+padding:16px 20px 12px;
+background:linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+border-bottom:3px solid var(--gold-dark);
+box-shadow:0 4px 20px rgba(0,0,0,0.5);
+position:relative;
+min-height:90px;
+}
+
+.header h1{
+margin:0;
+font-size:clamp(18px, 3.5vw, 32px);
+color:var(--gold);
+text-shadow:2px 2px 8px rgba(255, 213, 79, 0.3);
+letter-spacing:clamp(0.5px, 0.15vw, 1px);
+padding:0 140px;
+line-height:1.2;
+}
+
+.brand-s{color:#43a047;}
+.brand-amp{color:#000;}
+.brand-h{color:#c98f0a;}
+
+.header h3{
+margin:6px 0 0;
+color:var(--muted);
+font-weight:400;
+font-size:clamp(12px, 1.9vw, 15px);
+padding:0 140px;
+line-height:1.3;
+}
+
+@media (max-width: 900px){
+.header h1{
+padding:0 110px;
+font-size:clamp(16px, 4vw, 28px);
+}
+.header h3{
+padding:0 110px;
+}
+}
+
+@media (max-width: 600px){
+.header{
+padding:12px 10px 10px;
+min-height:80px;
+}
+.header h1{
+padding:0 85px;
+}
+.header h3{
+padding:0 85px;
+margin:4px 0 0;
+}
+}
+
+.header-info{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+max-width:800px;
+margin:6px auto 0;
+padding:0 20px;
+gap:12px;
+}
+
+.location, .owner{
+color:var(--muted);
+font-size:clamp(11px, 1.5vw, 13px);
+}
+
+.location strong, .owner strong{
+color:var(--gold);
+font-weight:600;
+}
+
+.header-top-row{
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:8px;
+padding:0 20px;
+}
+
+.header-icons{
+display:flex;
+gap:6px;
+align-items:center;
+flex-wrap:wrap;
+position:static;
+justify-content:flex-start;
+flex:1;
+min-width:180px;
+}
+
+.analytics-btn-wrapper{
+display:flex;
+align-items:center;
+position:static;
+justify-content:flex-end;
+flex:1;
+min-width:140px;
+}
+
+@media (max-width: 900px){
+.header-icons{
+gap:5px;
+}
+.analytics-btn-wrapper{
+gap:5px;
+}
+.header-top-row{
+padding:0 12px;
+gap:6px;
+}
+}
+
+@media (max-width: 768px){
+.header-top-row{
+padding:0 10px;
+gap:6px;
+}
+.header-icons,
+.analytics-btn-wrapper{
+min-width: auto;
+}
+.header-icon-btn{
+padding:8px 12px !important;
+font-size:clamp(11px, 2vw, 13px) !important;
+min-width:75px !important;
+}
+.user-name{
+font-size:clamp(10px, 1.8vw, 12px) !important;
+margin-right:2px !important;
+display:none;
+}
+}
+
+@media (max-width: 600px){
+.header-top-row{
+padding:0 8px;
+gap:4px;
+}
+.header-icons{
+gap:4px;
+}
+.header-icon-btn{
+padding:6px 10px !important;
+font-size:11px !important;
+min-width:60px !important;
+}
+.user-name{
+display:none !important;
+}
+}
+
+.user-info{
+display:flex;
+align-items:center;
+gap:4px;
+flex-wrap:wrap;
+}
+
+.header-icon-btn{
+background:var(--accent);
+color:#000;
+border:none;
+border-radius:8px;
+width:auto;
+height:auto;
+cursor:pointer;
+font-size:clamp(12px, 1.5vw, 15px);
+font-weight:600;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:all 0.3s ease;
+box-shadow:0 3px 10px rgba(255, 213, 79, 0.3);
+-webkit-tap-highlight-color:transparent;
+user-select:none;
+padding:9px 15px;
+min-width:90px;
+}
+
+@media (max-width: 900px){
+.header-icon-btn{
+padding:8px 13px;
+min-width:80px;
+font-size:12px;
+}
+}
+
+.header-icon-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(212, 160, 23, 0.5);
+}
+
+.header-icon-btn:active{
+transform:scale(0.95);
+}
+
+/* ===== LAYOUT ===== */
+body{display:flex;flex-direction:column;min-height:100vh;}
+.container{
+display:flex;
+flex:1;
+min-height:0;
+gap:8px;
+padding:8px;
+overflow:hidden;
+}
+
+@media (max-width: 768px){
+.container{
+gap:6px;
+padding:6px;
+}
+}
+
+@media (max-width: 600px){
+.container{
+flex-direction:column;
+gap:4px;
+padding:4px;
+}
+}
+
+/* ===== PAGE FOOTER ===== */
+.page-footer{
+flex-shrink:0;
+text-align:center;
+font-size:11px;
+color:var(--muted);
+border-top:2px solid rgba(163, 230, 53, 0.25);
+padding:10px;
+background:linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+margin-top:auto;
+}
+
+.page-footer b{
+color:var(--gold);
+font-weight:700;
+}
+
+/* ===== LEFT ===== */
+.left{
+width:65%;
+min-width:0;
+min-height:0;
+background:var(--panel);
+border-radius:16px;
+display:flex;
+flex-direction:column;
+box-shadow:0 8px 32px rgba(0,0,0,0.4);
+border:1px solid rgba(255, 213, 79, 0.1);
+overflow:hidden;
+}
+
+@media (max-width: 768px){
+.left{
+width:60%;
+}
+}
+
+@media (max-width: 600px){
+.left{
+width:100%;
+height:auto;
+max-height:60vh;
+border-radius:12px;
+}
+}
+
+.add-to-menu-btn{
+width:100%;
+padding:14px;
+background:var(--primary);
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(46, 125, 50, 0.4);
+transition:all 0.3s ease;
+margin-bottom:12px;
+}
+
+.add-to-menu-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(46, 125, 50, 0.6);
+}
+
+.add-to-menu-btn:active{
+transform:scale(0.98);
+}
+
+.tabs{
+flex-shrink:0;
+display:flex;
+gap:10px;
+padding:16px;
+background:rgba(0,0,0,0.3);
+border-radius:16px 16px 0 0;
+flex-wrap:wrap;
+}
+
+.tabs button{
+flex:1;
+min-width:120px;
+padding:18px 16px;
+background:var(--accent);
+color:#000;
+border:none;
+border-radius:10px;
+font-weight:600;
+font-size:clamp(13px, 3vw, 17px);
+cursor:pointer;
+transition:all 0.3s ease;
+box-shadow:0 4px 12px rgba(212, 160, 23, 0.3);
+-webkit-tap-highlight-color:transparent;
+user-select:none;
+min-height:50px;
+white-space:nowrap;
+text-overflow:ellipsis;
+text-transform:capitalize;
+}
+
+.tabs button:active{
+transform:scale(0.97);
+}
+
+.tabs button:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(212, 160, 23, 0.5);
+}
+
+.tabs button.active{
+background:linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+color:#000;
+box-shadow:0 6px 20px rgba(255, 179, 0, 0.5);
+transform:translateY(-2px);
+}
+
+@media (max-width: 1024px){
+.tabs{
+gap:8px;
+padding:14px;
+}
+.tabs button{
+padding:14px 12px;
+font-size:clamp(12px, 2.8vw, 15px);
+min-width:110px;
+}
+}
+
+@media (max-width: 768px){
+.tabs{
+gap:6px;
+padding:12px;
+}
+.tabs button{
+padding:12px 10px;
+font-size:clamp(11px, 2.5vw, 14px);
+min-width:100px;
+min-height:44px;
+}
+}
+
+@media (max-width: 600px){
+.tabs{
+gap:4px;
+padding:10px;
+}
+.tabs button{
+flex:1;
+padding:10px 8px;
+font-size:clamp(10px, 2.3vw, 13px);
+min-width:80px;
+min-height:42px;
+}
+}
+
+.menu{
+flex:1;
+min-height:0;
+overflow:auto;
+padding:16px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:16px;
+align-content:start;
+}
+
+.menu::-webkit-scrollbar{
+width:8px;
+}
+
+.menu::-webkit-scrollbar-track{
+background:rgba(0,0,0,0.2);
+border-radius:10px;
+}
+
+.menu::-webkit-scrollbar-thumb{
+background:var(--gold-dark);
+border-radius:10px;
+}
+
+@media (max-width: 1024px){
+.menu{
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:14px;
+padding:14px;
+}
+}
+
+@media (max-width: 768px){
+.menu{
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+gap:12px;
+padding:12px;
+}
+}
+
+@media (max-width: 600px){
+.menu{
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:10px;
+}
+}
+
+.menu-item{
+position:relative;
+padding:24px 20px;
+background:linear-gradient(135deg, var(--card-bg) 0%, #333 100%);
+border:2px solid transparent;
+border-radius:12px;
+cursor:pointer;
+transition:all 0.3s ease;
+box-shadow:0 4px 12px rgba(0,0,0,0.3);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100px;
+-webkit-tap-highlight-color:transparent;
+user-select:none;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+overflow:hidden;
+}
+
+@media (max-width: 768px){
+.menu-item{
+padding:18px 16px;
+min-height:90px;
+}
+}
+
+@media (max-width: 600px){
+.menu-item{
+padding:14px 12px;
+min-height:80px;
+}
+}
+
+.menu-item::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:linear-gradient(135deg, rgba(42, 42, 42, 0.65) 0%, rgba(51, 51, 51, 0.65) 100%);
+z-index:0;
+transition:all 0.3s ease;
+}
+
+.menu-item:hover::before{
+background:linear-gradient(135deg, rgba(42, 42, 42, 0.4) 0%, rgba(51, 51, 51, 0.4) 100%);
+}
+
+.menu-item:active{
+transform:scale(0.97);
+}
+
+.menu-item:hover{
+transform:translateY(-4px);
+border-color:var(--gold);
+box-shadow:0 8px 24px rgba(255, 213, 79, 0.3);
+}
+
+/* Fallback visual when image failed to load */
+.menu-item.image-load-failed{
+  background-image: linear-gradient(135deg, #f3f4f6 0%, #e6e8eb 100%);
+  color: var(--muted);
+}
+.menu-item.image-load-failed::before{
+  background:none;
+  opacity:0.6;
+}
+
+.item-name{
+font-size:14px;
+font-weight:600;
+color:var(--gold);
+margin-bottom:8px;
+text-align:center;
+position:relative;
+z-index:1;
+text-shadow:1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.item-price{
+font-size:18px;
+font-weight:bold;
+color:var(--gold-dark);
+position:relative;
+z-index:1;
+text-shadow:1px 1px 3px rgba(0,0,0,0.8);
+}
+
+@media (max-width: 768px){
+.item-name{
+font-size:clamp(12px, 2vw, 13px);
+margin-bottom:6px;
+}
+.item-price{
+font-size:clamp(15px, 2.5vw, 16px);
+}
+}
+
+@media (max-width: 600px){
+.item-name{
+font-size:clamp(11px, 1.8vw, 12px);
+margin-bottom:4px;
+}
+.item-price{
+font-size:clamp(13px, 2.2vw, 14px);
+}
+}
+
+/* ===== BILL PANEL ===== */
+.bill .cut-line{display:none;}
+.bill{
+width:35%;
+min-width:0;
+min-height:0;
+background:linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+color:black;
+border-radius:12px;
+padding:10px;
+display:flex;
+flex-direction:column;
+box-shadow:0 8px 32px rgba(0,0,0,0.5);
+border:2px solid var(--gold-dark);
+overflow:hidden;
+}
+
+@media (max-width: 768px){
+.bill{
+width:40%;
+padding:8px;
+}
+}
+
+@media (max-width: 600px){
+.bill{
+width:100%;
+height:auto;
+max-height:35vh;
+padding:8px;
+border-radius:10px;
+}
+}
+
+.bill-header{
+flex-shrink:0;
+border-bottom:1px dashed #999;
+padding-bottom:6px;
+margin-bottom:8px;
+text-align:center;
+position:relative;
+}
+
+.bill-header b{
+font-size:15px;
+color:#000;
+}
+
+.bill-subtitle{
+color:#555;
+font-size:12px;
+margin-top:2px;
+}
+
+.bill-number{
+text-align:right;
+font-size:11px;
+color:#000;
+font-weight:bold;
+margin-bottom:4px;
+display:flex;
+align-items:center;
+justify-content:flex-end;
+gap:4px;
+}
+
+.bill-no-input{
+width:50px;
+padding:2px 4px;
+border:1px solid #999;
+border-radius:4px;
+font-size:12px;
+font-weight:bold;
+text-align:center;
+background:white;
+color:#000;
+}
+
+.bill-no-input:focus{
+outline:none;
+border-color:var(--gold-dark);
+box-shadow:0 0 0 2px rgba(255, 179, 0, 0.2);
+}
+
+/* On screen: show input, hide static number; in print the opposite */
+.bill-no-display{ display:inline; }
+
+.token-number{
+text-align:right;
+font-size:12px;
+color:#000;
+font-weight:bold;
+margin-bottom:6px;
+}
+
+.datetime{
+display:flex;
+justify-content:space-between;
+font-size:10px;
+margin-top:4px;
+color:#666;
+font-weight:500;
+}
+
+.bill-items{
+flex:1;
+min-height:80px;
+overflow:auto;
+margin-bottom:6px;
+}
+
+.bill-items::-webkit-scrollbar{
+width:6px;
+}
+
+.bill-items::-webkit-scrollbar-track{
+background:#f0f0f0;
+border-radius:10px;
+}
+
+.bill-items::-webkit-scrollbar-thumb{
+background:var(--gold-dark);
+border-radius:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:15px;
+margin-bottom:0;
+}
+
+th{
+background:linear-gradient(135deg, #333 0%, #444 100%);
+color:white;
+padding:10px 8px;
+font-weight:600;
+font-size:13px;
+position:sticky;
+top:0;
+z-index:1;
+}
+
+td{
+border-bottom:1px solid #e0e0e0;
+padding:10px 8px;
+text-align:center;
+}
+
+td.qty-cell{
+padding:2px;
+}
+
+#billTable, #billTable th, #billTable td{
+padding:8px 10px;
+font-size:15px !important;
+}
+#billTable td:first-child,
+#billTable td:nth-child(2),
+#billTable td:nth-child(3){
+font-size:15px !important;
+font-weight:600 !important;
+}
+#billTable td:first-child{
+text-align:left;
+}
+#billTable td:nth-child(2), #billTable td:nth-child(3){
+text-align:center;
+}
+.qty-display{
+font-size:15px !important; /* same size as other columns */
+font-weight:600 !important;
+}
+#customerReceipt .customer-items .item, .customer-receipt .item{
+font-size:15px !important;
+font-weight:600 !important;
+}
+@media print{
+  #billTable, #billTable th, #billTable td{font-size:12pt !important;}
+  #billTable td:first-child{font-size:12.5pt !important;}
+  .qty-display{font-size:13pt !important;}
+  .customer-receipt .item{font-size:12pt !important;}
+}
+
+.qty-controls{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:2px;
+}
+
+.qty-btn{
+background:var(--gold-dark);
+color:#000;
+border:none;
+border-radius:4px;
+width:32px;
+height:32px;
+cursor:pointer;
+font-size:16px;
+font-weight:bold;
+transition:all 0.2s ease;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.qty-btn:hover{
+background:var(--gold);
+transform:scale(1.1);
+}
+
+.qty-btn:active{
+transform:scale(0.95);
+}
+
+.qty-display{
+min-width:20px;
+font-weight:600;
+font-size:15px;
+}
+
+td.remove-cell{
+padding:2px;
+width:32px;
+}
+
+.remove-btn{
+background:var(--red);
+color:white;
+border:none;
+border-radius:4px;
+padding:5px 10px;
+cursor:pointer;
+font-size:12px;
+font-weight:600;
+transition:all 0.2s ease;
+min-height:32px;
+}
+
+.remove-btn:hover{
+background:#b71c1c;
+transform:scale(1.05);
+}
+
+tr:hover{
+background:rgba(255, 213, 79, 0.1);
+}
+
+.payment-options{
+flex-shrink:0;
+margin-bottom:0px;
+}
+
+.payment-options label{
+display:block;
+font-size:14px;
+font-weight:600;
+margin-bottom:2px;
+color:#333;
+}
+
+.payment-options select{
+width:100%;
+padding:6px 12px;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:15px;
+background:white;
+cursor:pointer;
+transition:all 0.2s ease;
+min-height:42px;
+}
+
+.payment-options select:focus{
+outline:none;
+border-color:var(--gold-dark);
+box-shadow:0 0 0 3px rgba(255, 179, 0, 0.1);
+}
+
+/* ===== CUSTOM ITEM MODAL ===== */
+.add-custom-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:70px;
+height:70px;
+background:linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+color:#000;
+border:none;
+border-radius:50%;
+font-size:36px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 20px rgba(255, 179, 0, 0.6);
+z-index:1000;
+transition:all 0.3s ease;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.add-custom-btn:hover{
+transform:scale(1.1);
+box-shadow:0 6px 28px rgba(255, 179, 0, 0.8);
+}
+
+.add-custom-btn:active{
+transform:scale(0.95);
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+z-index:2000;
+align-items:center;
+justify-content:center;
+backdrop-filter:blur(4px);
+}
+
+.modal.active{
+display:flex;
+}
+
+/* Print-confirmation OK popup (shows 2s after Print) */
+.print-ok-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:2500;align-items:center;justify-content:center;backdrop-filter:blur(3px);}
+.print-ok-modal.active{display:flex}
+.print-ok-content{background:white;border-radius:12px;padding:18px 20px;max-width:320px;width:90%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.4);}
+.print-ok-content p{margin:0 0 12px;color:#111;font-weight:600}
+.print-ok-content .print-ok-btn{padding:10px 18px;border-radius:8px;border:none;background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 100%);color:#000;font-weight:700;cursor:pointer}
+
+.modal-content{
+background:white;
+border-radius:16px;
+padding:24px;
+width:90%;
+max-width:400px;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+animation:modalSlideIn 0.3s ease;
+max-height:92vh;overflow-y:auto;-ms-overflow-style:none;scrollbar-width:none;}
+.modal-content::-webkit-scrollbar{display:none}
+/* Prevent body scroll when modal is open */
+.modal-open{overflow:hidden;height:100vh;}
+
+@keyframes modalSlideIn{
+from{
+transform:translateY(-50px);
+opacity:0;
+}
+to{
+transform:translateY(0);
+opacity:1;
+}
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.modal-header h2{
+margin:0;
+color:#000;
+font-size:22px;
+}
+
+.modal-close{
+background:none;
+border:none;
+font-size:28px;
+cursor:pointer;
+color:#666;
+width:32px;
+height:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+transition:all 0.2s ease;
+}
+
+.modal-close:hover{
+background:#f0f0f0;
+color:#000;
+}
+
+.form-group{
+margin-bottom:16px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:6px;
+font-weight:600;
+color:#333;
+font-size:14px;
+}
+
+.form-group input{
+width:100%;
+padding:10px 12px;
+border:2px solid #ddd;
+border-radius:8px;
+font-size:15px;
+transition:all 0.2s ease;
+}
+
+.form-group input:focus{
+outline:none;
+border-color:var(--gold-dark);
+box-shadow:0 0 0 3px rgba(255, 179, 0, 0.1);
+}
+
+.form-group select{
+width:100%;
+padding:10px 12px;
+border:2px solid #ffc107;
+border-radius:8px;
+font-size:15px;
+background-color:#fff;
+color:#333;
+cursor:pointer;
+transition:all 0.2s ease;
+}
+
+.form-group select:focus{
+outline:none;
+border-color:var(--gold-dark);
+box-shadow:0 0 0 3px rgba(255, 179, 0, 0.1);
+}
+
+.form-group select option{
+padding:8px;
+background-color:#fff;
+color:#333;
+}
+
+.modal-actions{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.modal-actions button{
+flex:1;
+padding:12px;
+border:none;
+border-radius:8px;
+font-weight:600;
+font-size:15px;
+cursor:pointer;
+transition:all 0.2s ease;
+}
+
+.btn-add{
+background:linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+color:#000;
+}
+
+.btn-add:hover{
+transform:translateY(-2px);
+box-shadow:0 4px 12px rgba(255, 179, 0, 0.4);
+}
+
+.btn-cancel{
+background:#e0e0e0;
+color:#333;
+}
+
+.btn-cancel:hover{
+background:#d0d0d0;
+}
+
+/* ===== MANDI SIZE MODAL ===== */
+.mandi-modal-content{
+max-width:350px;
+}
+
+.mandi-sizes{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:20px;
+}
+
+.mandi-size-btn{
+padding:20px 12px;
+border:2px solid var(--accent);
+border-radius:10px;
+background:var(--panel);
+color:var(--text);
+font-weight:600;
+font-size:16px;
+cursor:pointer;
+transition:all 0.3s ease;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:8px;
+}
+
+.mandi-size-btn:hover{
+background:var(--accent);
+color:#000;
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(163, 230, 53, 0.4);
+}
+
+.mandi-size-btn:active{
+transform:scale(0.97);
+}
+
+.size-name{
+font-size:16px;
+font-weight:700;
+}
+
+.size-price{
+font-size:18px;
+font-weight:bold;
+}
+
+.total-section{
+flex-shrink:0;
+background:linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+color:var(--gold);
+padding:8px 10px;
+border-radius:8px;
+margin-bottom:6px;
+margin-top:0;
+}
+
+.total{
+font-size:20px;
+font-weight:bold;
+text-align:right;
+text-shadow:1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.footer{
+flex-shrink:0;
+text-align:center;
+font-size:10px;
+color:#666;
+border-top:1px dashed #aaa;
+margin-top:4px;
+padding-top:4px;
+}
+
+.footer b{
+font-weight:700;
+}
+
+.actions{
+flex-shrink:0;
+display:flex;
+gap:8px;
+}
+
+.actions button{
+flex:1;
+padding:10px;
+border:none;
+border-radius:8px;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+transition:all 0.3s ease;
+-webkit-tap-highlight-color:transparent;
+user-select:none;
+min-height:44px;
+}
+
+.actions button:active{
+transform:scale(0.97);
+}
+
+.print{
+background:linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+color:#000;
+box-shadow:0 4px 12px rgba(255, 179, 0, 0.4);
+}
+
+.print:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(255, 179, 0, 0.6);
+}
+
+.clear{
+background:linear-gradient(135deg, #c62828 0%, var(--red) 100%);
+color:white;
+box-shadow:0 4px 12px rgba(211, 47, 47, 0.4);
+}
+
+.clear:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(211, 47, 47, 0.6);
+}
+
+.empty-bill{
+text-align:center;
+color:#999;
+padding:40px 20px;
+font-style:italic;
+}
+
+/* ===== PRINT - normal page, clean thermal (no dark backgrounds) ===== */
+@media print{
+@page{
+size: auto;
+margin: 12px;
+}
+html, body{
+height: auto;
+overflow: visible;
+margin: 0;
+padding: 0;
+background: #fff !important;
+color: #000 !important;
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+*{
+margin: 0;
+padding: 0;
+}
+.left,.actions,.header,.add-custom-btn,.add-permanent-btn,.modal,.bill-no-input,.page-footer{display:none !important;}
+.print-ok-modal{display:none !important;}
+.bill .cut-line,.customer-receipt .cut-line{display:none !important;}
+.remove-btn, .remove-cell, th:last-child{display:none !important;}
+.qty-btn{display:none !important;}
+.qty-controls{display:inline !important;}
+.qty-display{font-size:9px !important;}
+
+/* Force clean print: white background, black text only (avoids smudged dark blocks on thermal) */
+.bill,
+.bill *,
+.customer-receipt,
+.customer-receipt *{
+background: transparent !important;
+background-image: none !important;
+box-shadow: none !important;
+text-shadow: none !important;
+color: #000 !important;
+}
+.bill,
+.customer-receipt{
+background: #fff !important;
+}
+
+
+
+/* Shared slip size: first and second bill - slightly smaller */
+.bill,
+.customer-receipt{
+width: 65mm !important;
+min-width: 65mm !important;
+max-width: 65mm !important;
+margin-left: auto !important;
+margin-right: auto !important;
+padding: 6px !important;
+box-sizing: border-box !important;
+}
+
+/* Slip 1: Kitchen/Bill - prints first */
+.bill{
+border: none !important;
+page-break-after: always !important;
+page-break-inside: avoid !important;
+font-size: 12px !important;
+}
+.bill::after{
+content: "";
+display: block;
+height: 2px;
+}
+.bill-header{
+padding-bottom:1px !important;
+margin-bottom:1px !important;
+border: none !important;
+}
+.bill-header b{
+font-size: 12px !important;
+margin:0 !important;
+line-height:1.2 !important;
+}
+.bill-subtitle{
+font-size: 9px !important;
+margin-top:0 !important;
+line-height:1.2 !important;
+}
+.bill-number{
+display:block !important;
+font-size: 9px !important;
+margin-bottom:0 !important;
+line-height:1.2 !important;
+}
+.bill-number::after{
+content: none;
+}
+.bill-no-display{
+display: inline !important;
+}
+.bill-no-input{
+display:none !important;
+}
+.token-number{
+display:block !important;
+font-size: 9px !important;
+margin-bottom:0 !important;
+line-height:1.2 !important;
+}
+.datetime{
+margin-top:1px !important;
+font-size: 9px !important;
+line-height:1.2 !important;
+}
+.bill-items{
+margin-bottom:1px !important;
+flex:none !important;
+}
+.payment-options{
+display: flex !important;
+flex-direction: row !important;
+flex-wrap: nowrap !important;
+align-items: baseline !important;
+gap: 2px !important;
+margin:0 !important;
+padding:0 !important;
+line-height:1 !important;
+}
+.payment-options label{
+font-size: 9px !important;
+margin:0 !important;
+display:inline !important;
+flex-shrink: 0 !important;
+line-height: 1 !important;
+}
+.payment-options select{
+display:inline !important;
+border:none !important;
+padding:0 !important;
+font-size: 9px !important;
+font-weight:bold !important;
+-webkit-appearance:none !important;
+-moz-appearance:none !important;
+appearance:none !important;
+background: transparent !important;
+background-image: none !important;
+line-height: 1 !important;
+}
+.payment-options + .payment-options{
+margin-top: -8px !important;
+}
+table{
+margin:0 !important;
+background: transparent !important;
+border-collapse: collapse;
+}
+th{
+padding:2px 3px !important;
+font-size: 11px !important;
+line-height:1.2 !important;
+background: transparent !important;
+border-bottom: 1px solid #000 !important;
+font-weight: bold !important;
+}
+td{
+padding:2px 3px !important;
+font-size: 11px !important;
+line-height:1.2 !important;
+background: transparent !important;
+border: none !important;
+}
+.total-section{
+margin:4px 0 !important;
+padding:2px 0 !important;
+background: transparent !important;
+border-top: 1px solid #000 !important;
+}
+.total{
+font-size: 14px !important;
+margin:0 !important;
+line-height:1.2 !important;
+font-weight: bold !important;
+}
+
+.footer{
+margin-top:2px !important;
+padding-top:2px !important;
+font-size: 9px !important;
+line-height:1.2 !important;
+}
+
+/* Slip 2: Customer Token - same size as slip 1 */
+.customer-receipt{
+display: block !important;
+background: white !important;
+color: black !important;
+page-break-before: always !important;
+page-break-inside: avoid !important;
+font-size: 12px !important;
+}
+.customer-receipt .bill-header{
+padding-bottom: 1px !important;
+margin-bottom: 1px !important;
+border-bottom: 1px dashed #000 !important;
+}
+.customer-receipt .bill-header b{
+font-size: 12px !important;
+line-height: 1.2 !important;
+}
+.customer-receipt .bill-subtitle{
+font-size: 9px !important;
+margin-top: 0 !important;
+line-height: 1.2 !important;
+}
+.customer-receipt .token-number{
+font-size: 9px !important;
+margin-bottom: 0 !important;
+line-height: 1.2 !important;
+}
+.customer-receipt .datetime{
+font-size: 9px !important;
+margin-top: 1px !important;
+line-height: 1.2 !important;
+}
+.customer-receipt .customer-items{
+margin-top: 0 !important;
+margin-bottom: 1px !important;
+}
+.customer-receipt .customer-items .item{
+padding: 2px 0 !important;
+border-bottom: 1px dashed #000 !important;
+font-size: 9px !important;
+font-weight: 500 !important;
+line-height: 1.2 !important;
+}
+.customer-receipt .footer{
+font-size: 9px !important;
+margin-top: 2px !important;
+padding-top: 2px !important;
+line-height: 1.2 !important;
+}
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet (iPad, small laptops) */
+@media screen and (max-width: 1024px){
+.header h1{
+font-size:28px;
+}
+.left{
+width:60%;
+}
+.bill{
+width:40%;
+}
+.menu{
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+}
+}
+
+/* Mobile Landscape & Small Tablets */
+@media screen and (max-width: 768px){
+.header h1{
+font-size:24px;
+}
+.header h3{
+font-size:14px;
+}
+.header-info{
+flex-direction:column;
+gap:4px;
+}
+.location, .owner{
+font-size:12px;
+}
+.container{
+flex-direction:column;
+}
+.left{
+width:100%;
+flex:1;
+min-height:200px;
+}
+.bill{
+width:100%;
+flex:1;
+min-height:280px;
+}
+.tabs{
+gap:6px;
+padding:8px;
+}
+.tabs button{
+padding:10px 8px;
+font-size:13px;
+}
+.menu{
+grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+gap:8px;
+}
+.menu-item{
+min-height:90px;
+padding:16px 12px;
+}
+.item-name{
+font-size:13px;
+}
+.item-price{
+font-size:16px;
+}
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 480px){
+.header{
+padding:12px 8px;
+}
+.header h1{
+font-size:20px;
+}
+.header h3{
+font-size:12px;
+}
+.header-info{
+font-size:10px;
+padding:0 10px;
+}
+.container{
+padding:8px;
+gap:8px;
+}
+.left{
+height:45vh;
+min-height:350px;
+}
+.bill{
+padding:12px;
+max-height:65vh;
+overflow-y:auto;
+}
+.bill-items{
+max-height:35vh;
+}
+.tabs{
+gap:4px;
+padding:6px;
+flex-wrap:wrap;
+}
+.add-to-menu-btn{
+padding:10px;
+font-size:13px;
+margin-bottom:8px;
+}
+.tabs button{
+padding:8px 6px;
+font-size:12px;
+min-width:80px;
+}
+.menu{
+grid-template-columns:repeat(2, 1fr);
+gap:6px;
+padding:8px;
+}
+.menu-item{
+min-height:80px;
+padding:12px 8px;
+}
+.item-name{
+font-size:12px;
+}
+.item-price{
+font-size:14px;
+}
+.bill-header b{
+font-size:16px;
+}
+.bill-subtitle{
+font-size:12px;
+}
+.datetime{
+font-size:10px;
+}
+table{
+font-size:11px;
+}
+th, td{
+padding:6px 4px;
+}
+th:last-child, .remove-cell{
+padding:4px 2px;
+width:35px;
+}
+.qty-btn{
+width:22px;
+height:22px;
+font-size:13px;
+}
+.qty-display{
+min-width:22px;
+font-size:12px;
+}
+.remove-btn{
+padding:3px 6px;
+font-size:10px;
+}
+.payment-options{
+margin-bottom:6px;
+}
+.payment-options label{
+font-size:10px;
+}
+.payment-options select{
+padding:5px 6px;
+font-size:11px;
+}
+.total{
+font-size:18px;
+}
+.actions button{
+padding:8px;
+font-size:13px;
+}
+.add-custom-btn{
+width:50px;
+height:50px;
+bottom:15px;
+right:15px;
+font-size:28px;
+}
+.modal-content{
+width:95%;
+padding:20px;
+}
+.modal-header h2{
+font-size:18px;
+}
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1440px){
+.container{
+max-width:1400px;
+margin:0 auto;
+}
+.header h1{
+font-size:36px;
+}
+.menu{
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+}
+}
+
+/* Ultra-wide screens */
+@media screen and (min-width: 1920px){
+.container{
+max-width:1600px;
+}
+}
+
+.customer-receipt{
+display:none;
+background:white;
+color:black;
+}
+
+
+.customer-items{
+margin-top:12px;
+}
+
+.customer-items .item{
+padding:6px 0;
+border-bottom:1px dashed #ccc;
+font-size:13px;
+font-weight:500;
+}
+
+/* ===== SETTINGS DROPDOWN ===== */
+.settings-container{
+position:relative;
+display:flex;
+align-items:center;
+}
+
+.settings-btn{
+background:var(--accent);
+color:#000;
+border:none;
+border-radius:8px;
+width:auto;
+height:auto;
+cursor:pointer;
+font-size:clamp(12px, 1.5vw, 15px);
+font-weight:600;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:all 0.3s ease;
+box-shadow:0 3px 10px rgba(255, 213, 79, 0.3);
+padding:9px 15px;
+min-width:90px;
+-webkit-tap-highlight-color:transparent;
+user-select:none;
+}
+
+@media (max-width: 900px){
+.settings-btn{
+padding:8px 13px;
+min-width:80px;
+font-size:12px;
+}
+}
+
+@media (max-width: 768px){
+.settings-btn{
+padding:8px 12px;
+min-width:75px;
+font-size:11px;
+}
+}
+
+@media (max-width: 600px){
+.settings-btn{
+padding:6px 10px;
+min-width:60px;
+font-size:10px;
+}
+}
+
+.settings-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(212, 160, 23, 0.5);
+}
+
+.settings-btn:active{
+transform:scale(0.95);
+}
+
+
+.settings-dropdown{
+  position:absolute;
+  top:100%;
+  left:0;
+  right:auto;
+  margin-top:8px;
+  margin-left:0;
+  background:var(--panel);
+  border:2px solid var(--accent);
+  border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.6);
+  z-index:1000;
+  min-width:200px;
+  overflow:visible;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px) scale(0.98);
+  transition:all 0.25s cubic-bezier(.4,1.6,.6,1);
+}
+
+@media (max-width: 600px){
+.settings-dropdown{
+min-width:180px;
+margin-left:8px;
+}
+}
+
+.settings-dropdown.active{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+}
+
+.dropdown-user-info{
+padding:12px 16px;
+border-bottom:2px solid rgba(163, 230, 53, 0.25);
+text-align:center;
+}
+
+.dropdown-user-name{
+font-size:14px;
+font-weight:600;
+color:var(--accent);
+display:block;
+text-transform:capitalize;
+}
+
+.settings-dropdown button{
+display:block;
+width:100%;
+padding:12px 16px;
+background:none;
+border:none;
+color:var(--text);
+text-align:left;
+cursor:pointer;
+font-size:14px;
+font-weight:500;
+transition:all 0.2s ease;
+border-bottom:1px solid rgba(163, 230, 53, 0.15);
+}
+
+.settings-dropdown button:last-child{
+border-bottom:none;
+}
+
+.settings-dropdown button:hover{
+background:rgba(163, 230, 53, 0.1);
+color:var(--accent);
+padding-left:20px;
+}
+
+.settings-dropdown button:active{
+background:rgba(163, 230, 53, 0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header" role="banner">
+  <h1>
+  <span class="brand-s">S</span>
+  <span class="brand-amp">&amp;</span>
+  <span class="brand-h">H</span> 
+  ARABIAN MANDI RESTAURANT
+  </h1>
+
+  <h3>Mandi | Chinese | Tandoori | Meals | Snacks | Biryani</h3>
+
+  <p style="margin:2px 0 0;color:var(--muted);font-size:12px;">
+  Contact No: 7569533075, 9703932144
+  </p>
+
+  <p style="margin:2px 0 0;color:#888;font-size:11px;font-style:italic;">
+  Billing Portal
+  </p>
+
+  <div class="header-top-row">
+    <div class="header-icons">
+      <div class="settings-container">
+        <button class="settings-btn" id="settingsBtn" title="Settings" aria-label="Settings">
+          Settings
+        </button>
+
+        <div class="settings-dropdown" id="settingsDropdown">
+          <div class="dropdown-user-info" id="dropdownUserInfo">
+            <span class="dropdown-user-name" id="dropdownUserName">User</span>
+          </div>
+          <button id="logoutBtn" class="logout-btn" title="Logout">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- No analytics-btn-wrapper for server/waiter role -->
+  </div>
+
+  <div class="header-info">
+    <div class="location">
+      <strong>Location:</strong>
+      <span>
+        1st floor opp three temples, Anits road, Sangivalasa,<br>
+        Thagarapuvalasa, Vishakapatnam, AP - 531162
+      </span>
+    </div>
+
+    <div class="owner" style="flex: 1; text-align: right;">
+      <div style="width:100%; display:flex; justify-content:flex-end;">
+        <strong style="margin-right: 6px;">Owner:</strong>
+        <span>A. Santosh Kumar</span>
+      </div>
+
+      <div style="width:100%; display:flex; justify-content:flex-end; margin-top:4px;">
+        <strong style="margin-right: 6px;">Contact No:</strong>
+        <span>7569533075, 9703932144</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container" role="main" aria-label="POS System Interface">
+
+<div class="left">
+<!-- Add to Menu button removed for server view -->
+<div class="tabs" id="tabs"></div>
+<div class="menu" id="menu"></div>
+</div>
+
+<div class="bill">
+
+<div class="cut-line"></div>
+
+<div class="bill-header">
+<div class="bill-number">
+Bill No: <span id="billNoDisplay" class="bill-no-display" aria-hidden="false">0</span>
+</div>
+<b>S&H ARABIAN MANDI RESTAURANT</b><br>
+<span class="bill-subtitle">Mandi | Chinese | Tandoori | Meals | Snacks | Biryani</span><br>
+<span style="font-size:10px;">Contact No: 7569533075, 9703932144</span>
+<div class="datetime">
+<span id="date"></span>
+<span id="time"></span>
+</div>
+</div>
+
+<div class="bill-items">
+<table id="billTable">
+<thead>
+<tr><th>Item</th><th>Qty</th><th>Price</th><th>Remove</th></tr>
+</thead>
+<tbody id="billBody"></tbody>
+</table>
+</div>
+
+<div class="payment-options">
+<label>Table No:</label>
+<select id="tableNo">
+<option value="">X</option>
+<option value="1">Table 1</option>
+<option value="2">Table 2</option>
+<option value="3">Table 3</option>
+<option value="4">Table 4</option>
+<option value="5">Table 5</option>
+<option value="6">Table 6</option>
+<option value="7">Table 7</option>
+<option value="8">Table 8</option>
+<option value="9">Table 9</option>
+<option value="10">Table 10</option>
+</select>
+</div>
+
+<div class="payment-options">
+<label>Payment Method:</label>
+<select id="paymentMethod">
+<option value="Cash / UPI">Cash / UPI</option>
+<option value="Card">Card</option>
+</select>
+</div>
+
+<div class="payment-options">
+<label>Order Type:</label>
+<select id="orderType">
+<option value="Dine-in / Take Out">Dine-in / Take Out</option>
+<option value="Swiggy / Zomato">Swiggy / Zomato</option>
+</select>
+</div>
+
+
+<div class="total-section">
+<div style="font-size:14px;margin-bottom:4px;display:flex;justify-content:space-between;"><span>Subtotal:</span><span>&#x20B9;<span id="subtotal">0</span></span></div>
+<div class="total">Total: &#x20B9;<span id="total">0</span></div>
+</div>
+
+<div class="actions">
+<button id="sendPrintBtn" class="print" onclick="sendToPrint()">Send to Print</button>
+<button id="clearBtn" class="clear" onclick="clearBill()">Clear</button>
+</div>
+
+<div class="footer" style="margin-top:4px;"><div style="font-size:12px;margin-bottom:2px;">Thank you!</div><b>&copy; ANITS 2023&ndash;2027 CSE 88 DEV</b></div>
+
+<div class="cut-line thermal-cut"></div>
+
+</div>
+
+
+</main>
+
+<footer class="page-footer" role="contentinfo">
+  <b>&copy; ANITS 2023&ndash;2027 CSE 88 DEV</b>
+</footer>
+
+<!-- Customer Token Receipt -->
+<aside class="customer-receipt" id="customerReceipt" role="complementary">
+
+<div class="cut-line"></div>
+
+<div class="bill-header">
+<div class="token-number">Token No: <span id="tokenNumber">1</span></div>
+<b>SH ARABIAN MANDI RESTAURANT</b><br>
+<span class="bill-subtitle">Mandi | Chinese | Tandoori | Meals | Snacks | Biryani</span>
+<br>
+<span style="font-size:10px;">Contact No:7569533075, 9703932144</span>
+<div class="datetime">
+<span id="dateCustomer"></span>
+<span id="timeCustomer"></span>
+</div>
+</div>
+
+<div class="customer-items" id="customerItems"></div>
+
+<div class="footer" style="margin-top:6px;"><div style="font-size:12px;margin-bottom:2px;">Thank you!</div><b>&copy; ANITS 2023&ndash;2027 CSE 88 DEV</b></div>
+
+<div class="cut-line thermal-cut"></div>
+
+</aside>
+
+<!-- Add Custom Item Button -->
+<button class="add-custom-btn" onclick="openCustomModal()" title="Add Custom Item">+</button>
+
+<!-- Custom Item Modal -->
+<div class="modal" id="customModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>Add Custom Item</h2>
+<button class="modal-close" onclick="closeCustomModal()">&times;</button>
+</div>
+<form onsubmit="addCustomItem(event)">
+<div class="form-group">
+<label for="customItemName">Item Name *</label>
+<input type="text" id="customItemName" placeholder="e.g., Special Thali" required>
+</div>
+<div class="form-group">
+<label for="customItemPrice">Price (&#x20B9;) *</label>
+<input type="number" id="customItemPrice" placeholder="e.g., 150" min="1" required>
+</div>
+<div class="modal-actions">
+<button type="button" class="btn-cancel" onclick="closeCustomModal()">Cancel</button>
+<button type="submit" class="btn-add">Add to Bill</button>
+</div>
+</form>
+</div>
+</div>
+
+<!-- Add Permanent Item Modal -->
+<div class="modal" id="permanentModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>Add Item to Menu Permanently</h2>
+<button class="modal-close" onclick="closePermanentModal()">&times;</button>
+</div>
+<!-- Simple tab switch for Single / Group item -->
+<div style="display:flex;gap:8px;padding:0 20px 12px;">
+  <button type="button" id="perm-tab-single" class="header-icon-btn" style="background:var(--primary);">Single</button>
+  <button type="button" id="perm-tab-group" class="header-icon-btn" style="background:var(--accent);">Group</button>
+</div>
+<form onsubmit="return false">
+  <!-- Shared fields -->
+  <div class="form-group">
+    <label for="permanentItemName">Item Name *</label>
+    <input type="text" id="permanentItemName" placeholder="e.g., Special Manchurian" required>
+  </div>
+  <div id="singleFields">
+    <div class="form-group">
+      <label for="permanentItemPrice">Price (&#x20B9;) *</label>
+      <input type="number" id="permanentItemPrice" placeholder="e.g., 150" min="1">
+    </div>
+  </div>
+
+  <div id="groupFields" style="display:none;">
+    <div class="form-group">
+      <label>Sizes *</label>
+      <div id="permanentGroupSizesContainer"></div>
+      <div style="margin-top:8px;">
+        <button type="button" id="permanentAddSizeBtn" class="header-icon-btn" style="background:var(--accent);padding:6px 10px;">+ Add size</button>
+        <small style="color:#999;margin-left:8px;display:block;margin-top:6px;">Start with 2 sizes (label + price).</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="permanentItemCategory">Category *</label>
+    <select id="permanentItemCategory" required>
+      <option value="mandi">Mandi</option>
+      <option value="biryani">Biryani</option>
+      <option value="starters">Starters</option>
+      <option value="mocktails">Mocktails</option>
+      <option value="desserts">Desserts</option>
+      <option value="beverages">Beverages</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="permanentItemImage">Upload Image (Optional)</label>
+    <input type="file" id="permanentItemImage" accept="image/*">
+    <div id="permanentItemPreview" class="image-preview" style="margin-top:8px;"></div>
+  </div>
+  <div class="form-group">
+    <label for="permanentItemImageUrl">Image URL (Optional)</label>
+    <input type="url" id="permanentItemImageUrl" name="image_url" placeholder="https://example.com/image.jpg">
+  </div>
+
+  <div class="modal-actions">
+    <button type="button" class="btn-cancel" onclick="closePermanentModal()">Cancel</button>
+    <!-- Disabled on server page -->
+    <button type="submit" class="btn-add" disabled style="opacity:0.6;cursor:not-allowed;">Add to Menu (disabled)</button>
+  </div>
+</form>
+</div>
+</div>
+
+<!-- Print OK confirmation modal (appears ~2s after Print) -->
+<div class="print-ok-modal" id="printOkModal" aria-hidden="true">
+	<div class="print-ok-content" role="dialog" aria-modal="true" aria-labelledby="printOkTitle">
+		<p id="printOkTitle">Tap OK to clear previous items</p>
+		<button id="printOkButton" class="print-ok-btn">OK</button>
+	</div>
+</div>
+
+<!-- Mandi Size Selection Modal -->
+<div class="modal" id="mandiSizeModal">
+<div class="modal-content mandi-modal-content">
+<div class="modal-header">
+<h2 id="mandiItemTitle">Select Size</h2>
+<button class="modal-close" onclick="closeMandiSizeModal()">&times;</button>
+</div>
+<div class="mandi-sizes" id="mandiSizesContainer"></div>
+</div>
+</div>
+
+<!-- Beverage Size Selection Modal -->
+<div class="modal" id="beverageSizeModal">
+<div class="modal-content mandi-modal-content">
+<div class="modal-header">
+<h2 id="beverageItemTitle">Select Size</h2>
+<button class="modal-close" onclick="closeBeverageSizeModal()">×</button>
+</div>
+<div class="mandi-sizes">
+<button class="mandi-size-btn" onclick="selectBeverageSize('2L')">
+<div class="size-name">2 L</div>
+<div class="size-price">₹<span id="price2L">100</span></div>
+</button>
+<button class="mandi-size-btn" onclick="selectBeverageSize('1L')">
+<div class="size-name">1 L</div>
+<div class="size-price">₹<span id="price1L">50</span></div>
+</button>
+<button class="mandi-size-btn" onclick="selectBeverageSize('750ml')">
+<div class="size-name">750 ml</div>
+<div class="size-price">₹<span id="price750ml">40</span></div>
+</button>
+<button class="mandi-size-btn" onclick="selectBeverageSize('250ml')">
+<div class="size-name">250 ml</div>
+<div class="size-price">₹<span id="price250ml">20</span></div>
+</button>
+<button class="mandi-size-btn" onclick="selectBeverageSize('250ml_glass')">
+<div class="size-name">250 ml (Glass Bottle)</div>
+<div class="size-price">₹<span id="price250ml_glass">10</span></div>
+</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+// Connect to local backend
+const apiUrl = (path) => 'https://sh-amr-backend.onrender.com' + path;
+
+// ===== AUTHENTICATION CHECK =====
+function checkAuthentication() {
+	const token = localStorage.getItem('authToken');
+	const user = localStorage.getItem('user');
+	
+	if (!token || !user) {
+		// Redirect to login if not authenticated
+		window.location.href = '/login.html';
+		return false;
+	}
+	
+	try {
+		const userData = JSON.parse(user);
+		displayUserInfo(userData);
+	} catch (e) {
+		localStorage.removeItem('authToken');
+		localStorage.removeItem('user');
+		window.location.href = '/login.html';
+	}
+	
+	return true;
+}
+
+function displayUserInfo(user) {
+	const dropdownUserName = document.getElementById('dropdownUserName');
+	if (user) {
+		const capitalizedName = user.username.charAt(0).toUpperCase() + user.username.slice(1);
+		if (dropdownUserName) {
+			dropdownUserName.textContent = `${capitalizedName}`;
+		}
+	}
+}
+
+function setupSettingsDropdown() {
+	const settingsBtn = document.getElementById('settingsBtn');
+	const settingsDropdown = document.getElementById('settingsDropdown');
+	
+	// Toggle dropdown on settings button click
+	if (settingsBtn) {
+		settingsBtn.addEventListener('click', function(e) {
+			e.stopPropagation();
+			settingsDropdown.classList.toggle('active');
+		});
+	}
+	
+	// Close dropdown when clicking outside
+	document.addEventListener('click', function() {
+		if (settingsDropdown.classList.contains('active')) {
+			settingsDropdown.classList.remove('active');
+		}
+	});
+}
+
+function setupLogout() {
+	const logoutBtn = document.getElementById('logoutBtn');
+	if (logoutBtn) {
+		logoutBtn.addEventListener('click', function() {
+			localStorage.removeItem('authToken');
+			localStorage.removeItem('user');
+			window.location.href = '/login.html';
+		});
+	}
+}
+
+function isAdminUser() {
+  const userData = localStorage.getItem('user');
+  if (!userData) return false;
+  try {
+    const user = JSON.parse(userData);
+    return user.role === 'admin';
+  } catch (e) {
+    return false;
+  }
+}
+
+function adjustAdminOnlyUI() {
+  const addToMenuBtn = document.querySelector('.add-to-menu-btn');
+  if (addToMenuBtn && !isAdminUser()) {
+    addToMenuBtn.style.display = 'none';
+  }
+}
+
+function normalizeCategory(category) {
+  return (category || '').toString().trim().toLowerCase() || 'mandi';
+}
+
+// Check authentication on page load
+document.addEventListener('DOMContentLoaded', function() {
+  if (checkAuthentication()) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user || (user.role !== 'server' && user.role !== 'waiter')) {
+      // Only allow server/waiter roles
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      window.location.href = '/server login.html';
+      return;
+    }
+    setupSettingsDropdown();
+    setupLogout();
+    adjustAdminOnlyUI();
+    // Load custom menu items from database
+    loadCustomMenuItems();
+  }
+});
+
+/* ===== FULL DISH LIST WITH IMAGES ===== */
+const data = {
+
+};
+
+
+/* ===== ELEMENTS ===== */
+const tabsDiv=document.getElementById("tabs");
+const menuDiv=document.getElementById("menu");
+const billBody=document.getElementById("billBody");
+const customerItems=document.getElementById("customerItems");
+
+// Explicit references for date/time elements
+const dateEl = document.getElementById('date');
+const timeEl = document.getElementById('time');
+const dateCustomerEl = document.getElementById('dateCustomer');
+const timeCustomerEl = document.getElementById('timeCustomer');
+
+let cart={}, total=0;
+let billNumber=0; // last assigned token on server (0 if none)
+let displayToken=0; // what to show in UI (next available or reserved)
+let isTokenReserved = false; // true when this client has reserved/been assigned a token
+let isLoadingBillNo = false;
+let lastBillDate = localStorage.getItem('lastBillDate');
+
+/* CHECK IF DATE HAS CHANGED FOR 24-HOUR RESET */
+function checkDateChangeAndReset() {
+  const today = new Date().toDateString();
+  const storedDate = localStorage.getItem('lastBillDate');
+  
+  if (storedDate !== today) {
+    // Date has changed - reset bill number to start from backend
+    localStorage.setItem('lastBillDate', today);
+    localStorage.removeItem('billNumber');
+    return true;
+  }
+  return false;
+}
+
+/* FETCH BILL NUMBER FROM DATABASE */
+async function fetchNextBillNumber() {
+  if (isLoadingBillNo) return;
+  isLoadingBillNo = true;
+  
+  try {
+    const response = await fetch(apiUrl('/api/token'));
+    const data = await response.json();
+    if (data.success) {
+      billNumber = data.token;
+      localStorage.setItem('billNumber', billNumber);
+      updateBillToken();
+    }
+  } catch (error) {
+  } finally {
+    isLoadingBillNo = false;
+  }
+}
+
+/* INITIALIZE BILL NUMBER ON PAGE LOAD */
+async function loadNumbers(){
+  // Check if 24 hours have passed
+  const dateChanged = checkDateChangeAndReset();
+  
+  try {
+    // Always fetch current bill from database to sync
+    const response = await fetch(apiUrl('/api/token/current'));
+    const data = await response.json();
+    
+    if(data.success){
+      billNumber = data.token;
+      displayToken = (billNumber || 0) + 1;
+      localStorage.setItem('billNumber', billNumber);
+      localStorage.setItem('lastBillDate', new Date().toDateString());
+      updateBillToken();
+    }
+  } catch (error) {
+    // Fallback to stored value or 0
+    const stored = localStorage.getItem('billNumber');
+    billNumber = stored ? parseInt(stored) : 0;
+    displayToken = (billNumber || 0) + 1;
+    updateBillToken();
+  }
+}
+
+/* UPDATE BILL AND TOKEN NUMBERS */
+function updateBillToken(){
+  const billNoElement = document.querySelector('.bill-header .bill-number');
+  if(billNoElement) billNoElement.setAttribute('data-bill-no', displayToken);
+  const displayEl = document.getElementById("billNoDisplay");
+  if(displayEl) displayEl.textContent = displayToken;
+  const tokenEl = document.getElementById("tokenNumber");
+  if(tokenEl) tokenEl.innerText = displayToken;
+}
+
+/* NEW BILL LISTENER - Auto-fetch next number */
+async function startNewBill() {
+  if(Object.keys(cart).length > 0){
+    if(confirm("Start a new bill?")){
+      cart = {};
+      await fetchNextBillNumber();
+      render();
+    }
+  } else {
+    await fetchNextBillNumber();
+  }
+}
+
+/* MANUAL INPUT LISTENER */
+document.addEventListener('DOMContentLoaded', function(){
+  loadNumbers();
+});
+
+/* DATE TIME */
+function updateDateTime(){
+const now=new Date();
+const dateStr="Date: "+now.toLocaleDateString();
+const timeStr="Time: "+now.toLocaleTimeString();
+if (dateEl) dateEl.innerText = dateStr;
+if (timeEl) timeEl.innerText = timeStr;
+if (dateCustomerEl) dateCustomerEl.innerText = dateStr;
+if (timeCustomerEl) timeCustomerEl.innerText = timeStr;
+}
+setInterval(updateDateTime,1000);
+
+updateDateTime();
+
+/* TABS */
+Object.keys(data).forEach((cat,i)=>{
+let btn=document.createElement("button");
+btn.innerText=cat;
+if(i===0)btn.classList.add("active");
+btn.onclick=()=>{
+document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+load(cat);
+};
+tabsDiv.appendChild(btn);
+});
+
+/* LOAD MENU */
+function load(cat){
+  menuDiv.innerHTML = "";
+  if (!Array.isArray(data[cat])) {
+    // Defensive: if data[cat] is not an array, do nothing or show a message
+    return;
+  }
+  data[cat].forEach(item => {
+    let card = document.createElement("div");
+    card.className = "menu-item";
+    let imageUrl = null;
+
+// Handle group items with size selection (including mandi)
+  if(cat !== "beverages" && typeof item === "object" && item.prices){
+    card.onclick=()=>showMandiSizeModal(item);
+    const displayName = item.name || "Unnamed";
+    const priceValues = Object.values(item.prices || {}).map(v => Number(v)).filter(v => !Number.isNaN(v));
+    const minP = priceValues.length ? Math.min(...priceValues) : 0;
+    const maxP = priceValues.length ? Math.max(...priceValues) : minP;
+    card.innerHTML=`
+    <div class="item-name">${displayName}</div>
+    <div class="item-price">\u20B9${minP} - \u20B9${maxP}</div>
+    `;
+    
+    if(item.image){
+      imageUrl = item.image;
+    }
+  } else if(cat === "beverages" && typeof item === 'object' && item.prices){
+  // Handle beverage items with size selection
+  card.onclick=()=>showBeverageSizeModal(item);
+    const priceValues = Object.values(item.prices || {}).map(v => Number(v)).filter(v => !Number.isNaN(v));
+    const minP = priceValues.length ? Math.min(...priceValues) : 0;
+    const maxP = priceValues.length ? Math.max(...priceValues) : minP;
+    card.innerHTML = `
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">\u20B9${minP} - \u20B9${maxP}</div>
+        <div class="item-buttons">
+        <button class="single-item-btn" onclick="showMandiSizeModal(${JSON.stringify(item).replace(/"/g,'&quot;')})">Single Item</button>
+        <button class="group-item-btn" onclick="showGroupItemModal(${JSON.stringify(item).replace(/"/g,'&quot;')})">Group Item</button>
+      </div>
+    `;
+    if(item.image){
+      imageUrl = item.image;
+    }
+    // Prevent card click from triggering modal, only buttons do
+    card.onclick = null;
+} else {
+  // Handle other items (array format)
+  card.onclick=()=>add(item[0],item[1]);
+  card.innerHTML=`
+  <div class="item-name">${item[0]}</div>
+  <div class="item-price">\u20B9${item[1]}</div>
+  `;
+
+  if(item[2]){
+    imageUrl = item[2];
+  }
+}
+
+if(!imageUrl){
+  imageUrl = "";
+}
+
+if(imageUrl){
+  card.style.backgroundImage=`url('${imageUrl}')`;
+  card.style.backgroundSize='cover';
+  card.style.backgroundPosition='center';
+  card.style.backgroundRepeat='no-repeat';
+}else{
+  card.style.backgroundImage='none';
+}
+
+menuDiv.appendChild(card);
+});
+}
+load(Object.keys(data)[0]);
+
+/* BILLING */
+function add(n,p){
+cart[n]?cart[n].qty++:cart[n]={price:p,qty:1};
+render();
+}
+
+function render(){
+billBody.innerHTML="";
+customerItems.innerHTML="";
+let subtotal=0;
+
+if(Object.keys(cart).length === 0){
+// Group Item Modal logic (stub)
+function showGroupItemModal(item) {
+  // For now, just show the same modal as single item, but could be customized
+  showMandiSizeModal(item);
+}
+billBody.innerHTML='<tr><td colspan="4" class="empty-bill">No items added yet</td></tr>';
+}else{
+for(let k in cart){
+let r=billBody.insertRow(-1);
+r.insertCell(0).innerText=k;
+
+// Quantity controls
+let qtyCell=r.insertCell(1);
+qtyCell.className="qty-cell";
+let qtyControls=document.createElement("div");
+qtyControls.className="qty-controls";
+qtyControls.innerHTML=`
+<button class="qty-btn" onclick="decreaseQty('${k.replace(/'/g, "\\'")}')">&minus;</button>
+<span class="qty-display">${cart[k].qty}</span>
+<button class="qty-btn" onclick="increaseQty('${k.replace(/'/g, "\\'")}')">+</button>
+`;
+qtyCell.appendChild(qtyControls);
+r.insertCell(2).innerText = '\u20B9' + (cart[k].price * cart[k].qty);
+subtotal+=cart[k].price*cart[k].qty;
+
+// Add remove button
+let removeCell=r.insertCell(3);
+removeCell.className="remove-cell";
+let removeBtn=document.createElement("button");
+removeBtn.className="remove-btn";
+removeBtn.innerText = '\u2716';
+removeBtn.onclick=()=>removeItem(k);
+removeCell.appendChild(removeBtn);
+
+// Add to customer receipt (just item names)
+let itemDiv=document.createElement("div");
+itemDiv.className="item";
+itemDiv.innerText=cart[k].qty+" x "+k;
+customerItems.appendChild(itemDiv);
+}
+}
+
+// ...existing code...
+total = subtotal;
+
+// Update displays
+const subtotalEl = document.getElementById("subtotal");
+if(subtotalEl) subtotalEl.innerText = subtotal;
+const totalEl = document.getElementById("total");
+if(totalEl) totalEl.innerText = total;
+
+// update action buttons state
+updateActionButtons();
+}
+
+function updateActionButtons(){
+	const sendPrintBtn = document.getElementById('sendPrintBtn');
+	const clearBtn = document.getElementById('clearBtn');
+	const hasItems = Object.keys(cart).length>0 && total>0;
+	if(sendPrintBtn) sendPrintBtn.disabled = !hasItems;
+	if(clearBtn) clearBtn.disabled = !Object.keys(cart).length>0;
+	// visual disabled styling
+	if(sendPrintBtn) sendPrintBtn.style.opacity = sendPrintBtn.disabled ? '0.6' : '1';
+	if(clearBtn) clearBtn.style.opacity = clearBtn.disabled ? '0.6' : '1';
+}
+
+function increaseQty(itemName){
+if(cart[itemName]){
+cart[itemName].qty++;
+render();
+}
+}
+
+function decreaseQty(itemName){
+if(cart[itemName]){
+if(cart[itemName].qty > 1){
+cart[itemName].qty--;
+render();
+}else{
+// If quantity is 1, remove the item
+removeItem(itemName);
+}
+}
+}
+
+function removeItem(itemName){
+delete cart[itemName];
+render();
+}
+
+async function clearBill(){
+  if(Object.keys(cart).length > 0){
+    if(confirm("Clear all items?")){
+      cart={};
+      render();
+    }
+  }
+}
+
+// Print lock to prevent rapid double-printing on mobile
+let isSendingPrint = false;
+
+// Hide table number field if not selected before sending to print
+function hideEmptyFieldsBeforeSend(){
+  // Hide table number if not selected
+  const tableNo = document.getElementById("tableNo")?.value;
+  const tableSection = Array.from(document.querySelectorAll('.payment-options')).find(el => 
+    el.querySelector('label') && el.querySelector('label').textContent.includes('Table')
+  );
+  if(tableSection){
+    tableSection.style.display = tableNo ? 'flex' : 'none';
+  }
+}
+
+async function sendToPrint(){
+  // Prevent multiple rapid calls
+  if(isSendingPrint){
+    return;
+  }
+
+  // require positive total to avoid sending zero bills
+  if(Object.keys(cart).length === 0 || total <= 0){
+    alert("Please add items to the bill before sending to print.");
+    return;
+  }
+
+  isSendingPrint = true;
+
+  // Always get fresh bill number from server (this increments the counter)
+  try {
+    const response = await fetch(apiUrl('/api/token'));
+    const data = await response.json();
+    if(data.success){
+      billNumber = data.token;
+      displayToken = billNumber; // reserved token
+      updateBillToken();
+    } else {
+      alert('Error getting bill number. Please refresh and try again.');
+      isSendingPrint = false;
+      return;
+    }
+  } catch(error) {
+    alert('Error getting bill number: ' + error.message);
+    isSendingPrint = false;
+    return;
+  }
+
+  // Calculate subtotal
+  let subtotal = 0;
+  for(let k in cart){
+    subtotal += cart[k].price * cart[k].qty;
+  }
+
+  // Prepare bill data
+  const billData = {
+    items: Object.entries(cart).map(([name, item]) => ({
+      name: name,
+      price: item.price,
+      qty: item.qty
+    })),
+    subtotal: subtotal,
+    total: total,
+    payment: document.getElementById("paymentMethod").value,
+    orderType: document.getElementById("orderType").value,
+    tableNo: document.getElementById("tableNo")?.value || "",
+    token: billNumber
+  };
+
+  // Validate bill data
+  if(!billData.items || billData.items.length === 0) {
+    alert('Error: No items in bill. Please add items before sending to print.');
+    isSendingPrint = false;
+    return;
+  }
+
+  if(!billData.token || billData.token === 0) {
+    alert('Error: Invalid bill number. Please try again.');
+    isSendingPrint = false;
+    return;
+  }
+
+  if(!billData.payment) {
+    alert('Error: Please select a payment method.');
+    isSendingPrint = false;
+    return;
+  }
+
+  if(!billData.orderType) {
+    alert('Error: Please select an order type.');
+    isSendingPrint = false;
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+    
+    // Hide empty fields before sending to queue
+    hideEmptyFieldsBeforeSend();
+    
+    const response = await fetch(apiUrl('/api/print-queue'), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(billData)
+    });
+
+    const data = await response.json();
+
+    if(data.success) {
+      alert('\u2714 Print request sent successfully! Bill #' + billNumber + ' is waiting for admin/cashier to print.');
+      // Clear cart and reset bill number for next transaction
+      cart = {};
+      isTokenReserved = false;
+      await fetchNextBillNumber(); // Instantly update bill number for next bill
+      // Restore visibility of fields for next bill
+      const tableSection = Array.from(document.querySelectorAll('.payment-options')).find(el => 
+        el.querySelector('label') && el.querySelector('label').textContent.includes('Table')
+      );
+      if(tableSection) tableSection.style.display = 'flex';
+      render();
+    } else {
+      alert('\u274C Error sending print request: ' + (data.error || 'Unknown error'));
+      // Restore visibility on error
+      const tableSection = Array.from(document.querySelectorAll('.payment-options')).find(el => 
+        el.querySelector('label') && el.querySelector('label').textContent.includes('Table')
+      );
+      if(tableSection) tableSection.style.display = 'flex';
+    }
+  } catch (error) {
+    alert('\u274C Error sending print request: ' + error.message);
+    // Restore visibility on error
+    const tableSection = Array.from(document.querySelectorAll('.payment-options')).find(el => 
+      el.querySelector('label') && el.querySelector('label').textContent.includes('Table')
+    );
+    if(tableSection) tableSection.style.display = 'flex';
+  } finally {
+    isSendingPrint = false;
+  }
+}
+
+// Custom Item Modal Functions
+function openCustomModal(){
+document.getElementById("customModal").classList.add("active");
+// Prevent background scroll
+document.body.classList.add('modal-open');
+document.getElementById("customItemName").focus();
+}
+
+function closeCustomModal(){
+document.getElementById("customModal").classList.remove("active");
+// Restore background scroll
+document.body.classList.remove('modal-open');
+document.getElementById("customItemName").value="";
+document.getElementById("customItemPrice").value="";
+}
+
+function addCustomItem(event){
+event.preventDefault();
+let itemName=document.getElementById("customItemName").value.trim();
+let itemPrice=parseInt(document.getElementById("customItemPrice").value);
+if(itemName && itemPrice > 0){
+add(itemName, itemPrice);
+closeCustomModal();
+}
+}
+
+// Close modal when clicking outside
+document.getElementById("customModal").addEventListener("click", function(e){
+if(e.target === this){
+closeCustomModal();
+}
+});
+
+// Close modal with Escape key
+document.addEventListener("keydown", function(e){
+if(e.key === "Escape"){
+closeCustomModal();
+closePermanentModal();
+}
+});
+
+// ===== PERMANENT MENU ITEM FUNCTIONS =====
+
+function openPermanentModal(){
+if (!isAdminUser()) {
+  alert('Access denied. Only administrators can add menu items.');
+  return;
+}
+document.getElementById("permanentModal").classList.add("active");
+// Prevent background scroll
+document.body.classList.add('modal-open');
+setTimeout(initPermanentGroupSizeEditor,50);
+document.getElementById("permanentItemName").focus();
+}
+
+function closePermanentModal(){
+  document.getElementById("permanentModal").classList.remove("active");
+  // Restore background scroll
+  document.body.classList.remove('modal-open');
+  document.getElementById("permanentItemName").value="";
+  document.getElementById("permanentItemPrice").value="";
+  document.getElementById("permanentItemCategory").value="mandi";
+  // Clear preview, URL and group fields
+  const pv = document.getElementById('permanentItemPreview'); if(pv) pv.innerHTML = '';
+  const pu = document.getElementById('permanentItemImageUrl'); if(pu) pu.value = '';
+  const gContainer = document.getElementById('permanentGroupSizesContainer'); if(gContainer) gContainer.innerHTML = '';
+  // Reset to Single tab
+  const ts = document.getElementById('perm-tab-single');
+  const tg = document.getElementById('perm-tab-group');
+  if(ts && tg){ ts.classList.add('active'); tg.classList.remove('active'); document.getElementById('singleFields').style.display='block'; document.getElementById('groupFields').style.display='none'; }
+}
+
+// Tab handling for Permanent Modal
+(function(){
+  const ts = document.getElementById('perm-tab-single');
+  const tg = document.getElementById('perm-tab-group');
+  if(ts && tg){
+    ts.addEventListener('click', ()=>{ ts.classList.add('active'); tg.classList.remove('active'); document.getElementById('singleFields').style.display='block'; document.getElementById('groupFields').style.display='none'; document.getElementById('permanentItemPrice').focus(); });
+    tg.addEventListener('click', ()=>{ tg.classList.add('active'); ts.classList.remove('active'); document.getElementById('singleFields').style.display='none'; document.getElementById('groupFields').style.display='block'; setTimeout(initPermanentGroupSizeEditor,50); });
+  }
+
+  // Preview image when selecting file or entering URL
+  const fileInput = document.getElementById('permanentItemImage');
+  const urlInput = document.getElementById('permanentItemImageUrl');
+  const preview = document.getElementById('permanentItemPreview');
+  function showPreview(src){ if(!preview) return; preview.innerHTML = ''; if(!src) return; const img = document.createElement('img'); img.style.maxWidth='120px'; img.style.maxHeight='80px'; img.src = src; preview.appendChild(img); }
+  if(fileInput){ fileInput.addEventListener('change', ()=>{ const f = fileInput.files && fileInput.files[0]; if(f){ const r = new FileReader(); r.onload = ()=> showPreview(r.result); r.readAsDataURL(f); } else showPreview(''); }); }
+  if(urlInput){ urlInput.addEventListener('input', ()=>{ const v = urlInput.value.trim(); if(v) showPreview(v); else showPreview(''); }); }
+})();
+
+// New function to handle both Single and Group additions from Server UI
+async function addPermanentItemNew(event){
+  event.preventDefault();
+  const isGroup = document.getElementById('perm-tab-group').classList.contains('active');
+  const itemName = document.getElementById("permanentItemName").value.trim();
+  const itemCategory = document.getElementById("permanentItemCategory").value.trim() || "mandi";
+  const itemImageFile = document.getElementById("permanentItemImage") ? document.getElementById("permanentItemImage").files[0] : null;
+  const itemImageUrl = (document.getElementById('permanentItemImageUrl') || {}).value || '';
+
+  const formData = new FormData();
+  formData.append('name', itemName);
+  formData.append('category', itemCategory);
+  formData.append('is_group', isGroup ? '1' : '0');
+
+  if(isGroup){
+    // collect dynamic sizes
+    const rows = Array.from(document.querySelectorAll('#permanentGroupSizesContainer .group-size-row'));
+    const sizes = {};
+    for(const r of rows){
+      const label = (r.querySelector('.group-size-label') || {}).value || '';
+      const price = parseFloat((r.querySelector('.group-size-price') || {}).value);
+      if(!label || Number.isNaN(price) || price <= 0){ alert('Please enter valid label and price for each size'); return; }
+      sizes[label.trim()] = price;
+    }
+    if(Object.keys(sizes).length < 2){ alert('Please enter at least two sizes'); return; }
+    formData.append('group_prices', JSON.stringify(sizes));
+    if(itemImageUrl && itemImageUrl.trim()){ formData.append('image_url', itemImageUrl.trim()); }
+    else if(itemImageFile) { formData.append('image', itemImageFile); }
+
+  } else {    const itemPrice = parseFloat(document.getElementById("permanentItemPrice").value);
+    if(!itemName || !itemPrice || itemPrice <= 0){
+      alert("Please enter valid item name and price");
+      return;
+    }
+    formData.append('price', itemPrice);
+    if(itemImageFile) formData.append('image', itemImageFile);
+    if(itemImageUrl && itemImageUrl.trim()) formData.append('image_url', itemImageUrl.trim());
+  }
+
+  try {
+    const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+
+    const response = await fetch(apiUrl('/api/custom-items'), {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: formData
+    });
+    if(!response.ok){ const text = await response.text(); console.error('Server returned non-OK response:', response.status, text); alert(`\u274C Server error: ${response.status} - ${text}`); return; }
+
+    const data = await response.json();
+    if(data.success){
+      alert(`\u2714 "${itemName}" has been added to the menu!`);
+      closePermanentModal();
+      await loadCustomMenuItems();
+    } else { console.error('API returned success=false', data); alert('\u274C Failed to add item. Check console for details.'); }
+  } catch (err) { console.error('Error adding permanent item:', err); alert('\u274C Error adding item. See console for details.'); }
+}
+
+/* ===== MANDI SIZE SELECTION MODAL ===== */
+let currentMandiItem = null;
+
+function formatSizeLabel(label){
+  if(!label) return '';
+  if(/\d/.test(label)) return label;
+  if(label === label.toLowerCase()){
+    return label.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+  return label;
+}
+
+function showMandiSizeModal(item){
+currentMandiItem = item;
+document.getElementById("mandiItemTitle").textContent = item.name;
+const container = document.getElementById("mandiSizesContainer");
+if(container){
+  container.innerHTML = '';
+  const entries = Object.entries(item.prices || {});
+  entries.forEach(([label, price]) => {
+    const p = Number(price);
+    if(Number.isNaN(p)) return;
+    const displayLabel = formatSizeLabel(label);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'mandi-size-btn';
+    btn.onclick = () => selectMandiSize(label);
+    btn.innerHTML = `
+    <div class="size-name">${displayLabel}</div>
+    <div class="size-price">₹<span>${p}</span></div>
+    `;
+    container.appendChild(btn);
+  });
+  if(container.children.length === 0){
+    container.innerHTML = '<div style="color:#999;font-size:13px;">No sizes available</div>';
+  }
+}
+document.getElementById("mandiSizeModal").classList.add("active");
+}
+
+function closeMandiSizeModal(){
+document.getElementById("mandiSizeModal").classList.remove("active");
+currentMandiItem = null;
+}
+
+function selectMandiSize(size){
+if(!currentMandiItem) return;
+
+const itemName = currentMandiItem.name + " - " + formatSizeLabel(size);
+const itemPrice = currentMandiItem.prices[size];
+if(itemPrice === undefined || itemPrice === null || itemPrice === "") return;
+
+add(itemName, itemPrice);
+closeMandiSizeModal();
+}
+
+// Beverage size selection functions
+let currentBeverageItem = null;
+
+function showBeverageSizeModal(item){
+currentBeverageItem = item;
+document.getElementById("beverageItemTitle").textContent = item.name;
+
+// Define all possible sizes
+const allSizes = ["2L", "1L", "750ml", "250ml", "250ml_glass"];
+const sizeButtonsMap = {
+  "2L": document.querySelector('button[onclick="selectBeverageSize(\'2L\')"]'),
+  "1L": document.querySelector('button[onclick="selectBeverageSize(\'1L\')"]'),
+  "750ml": document.querySelector('button[onclick="selectBeverageSize(\'750ml\')"]'),
+  "250ml": document.querySelector('button[onclick="selectBeverageSize(\'250ml\')"]'),
+  "250ml_glass": document.querySelector('button[onclick="selectBeverageSize(\'250ml_glass\')"]')
+};
+
+// Show/hide size buttons based on what's available in item.prices
+allSizes.forEach(size => {
+  const button = sizeButtonsMap[size];
+  if(button) {
+    if(item.prices[size] !== undefined) {
+      button.style.display = 'block';
+      document.getElementById("price" + size).textContent = item.prices[size];
+    } else {
+      button.style.display = 'none';
+    }
+  }
+});
+
+document.getElementById("beverageSizeModal").classList.add("active");
+}
+
+function closeBeverageSizeModal(){
+document.getElementById("beverageSizeModal").classList.remove("active");
+currentBeverageItem = null;
+}
+
+function selectBeverageSize(size){
+if(!currentBeverageItem) return;
+
+const sizeLabels = { 
+  "2L": "2 L", 
+  "1L": "1 L", 
+  "750ml": "750 ml", 
+  "250ml": "250 ml", 
+  "250ml_glass": "250 ml (Glass Bottle)" 
+};
+const itemName = currentBeverageItem.name + " - " + sizeLabels[size];
+const itemPrice = currentBeverageItem.prices[size];
+
+add(itemName, itemPrice);
+closeBeverageSizeModal();
+}
+
+async function addPermanentItem(event){
+event.preventDefault();
+const itemName = document.getElementById("permanentItemName").value.trim();
+const itemPrice = parseFloat(document.getElementById("permanentItemPrice").value);
+const itemCategory = document.getElementById("permanentItemCategory").value.trim() || "mandi";
+const itemImageFile = document.getElementById("permanentItemImage") ? document.getElementById("permanentItemImage").files[0] : null;
+
+if(!itemName || !itemPrice || itemPrice <= 0){
+  alert("Please enter valid item name and price");
+  return;
+}
+
+const formData = new FormData();
+formData.append('name', itemName);
+formData.append('price', itemPrice);
+formData.append('category', itemCategory);
+if (itemImageFile) {
+  formData.append('image', itemImageFile);
+}
+
+try {
+  const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+  // Debug: log token presence and formData entries
+
+  const response = await fetch(apiUrl('/api/custom-items'), {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
+    body: formData
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    console.error('Server returned non-OK response:', response.status, text);
+    alert(`\u274C Server error: ${response.status} - ${text}`);
+    return;
+  }
+  const data = await response.json();
+  if(data.success){
+    alert(`\u2714 "${itemName}" has been added to the menu!`);
+    closePermanentModal();
+    // Reload menu to show new item
+    await loadCustomMenuItems();
+  } else {
+    alert(`\u274C Error: ${data.error || 'Failed to add item'}`);
+  }
+} catch (error) {
+  alert('\u274C Failed to add item to menu');
+}
+}
+
+// Load custom menu items from database
+async function loadCustomMenuItems(){
+try {
+const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+const response = await fetch(apiUrl('/api/custom-items'), {
+headers: {
+'Authorization': `Bearer ${token}`
+}
+});
+
+if (!response.ok) {
+  const errorText = await response.text();
+  console.error('Failed to load custom items:', errorText);
+  return;
+}
+
+const result = await response.json();
+
+if(result.success && result.items){
+// Group items by category
+const customByCategory = {};
+result.items.forEach(item => {
+const cat = normalizeCategory(item.category);
+if(!customByCategory[cat]){
+customByCategory[cat] = [];
+}
+customByCategory[cat].push(item);
+});
+
+// Add custom items to existing menu or create new tabs
+for(const [category, items] of Object.entries(customByCategory)){
+if(!data[category]){
+data[category] = [];
+}
+items.forEach(item => {
+  // Prefer server-provided absolute URL, then base64, then filename
+  let imageUrl = "";
+  if(item.image_url){
+    imageUrl = item.image_url;
+  } else if(item.image_base64){
+    const mime = item.image_mime || 'image/jpeg';
+    imageUrl = `data:${mime};base64,${item.image_base64}`;
+  } else if(item.image && typeof item.image === 'string' && item.image !== ""){
+    if(item.image.startsWith('http') || item.image.startsWith('data:')){
+      imageUrl = item.image;
+    } else {
+      imageUrl = apiUrl(`/uploads/${item.image}`);
+    }
+  }
+
+  // Find existing index if present so we can update instead of duplicating
+  const existingIndex = data[category].findIndex(m => Array.isArray(m) ? m[0] === item.name : m.name === item.name);
+
+    let groupPrices = item.group_prices || item.prices || (
+      (item.price_solo !== undefined || item.price_duo !== undefined || item.price_trio !== undefined || item.price_squad !== undefined)
+        ? {
+            solo: item.price_solo,
+            duo: item.price_duo,
+            trio: item.price_trio,
+            squad: item.price_squad
+          }
+        : null
+    );
+    if(typeof groupPrices === 'string'){
+      try { groupPrices = JSON.parse(groupPrices); } catch(e) { groupPrices = null; }
+    }
+    if(Array.isArray(groupPrices)){
+      const obj = {};
+      groupPrices.forEach(g => {
+        if(g && g.name !== undefined && g.price !== undefined){
+          obj[g.name] = g.price;
+        }
+      });
+      groupPrices = obj;
+    }
+  
+    if(item.is_group && groupPrices){
+      const groupObj = {
+        name: item.name || 'Unnamed',
+        prices: Object.fromEntries(
+          Object.entries(groupPrices).map(([k, v]) => [k, Number(v)])
+        ),
+        image: imageUrl
+      };
+
+    if(existingIndex >= 0){
+      data[category][existingIndex] = groupObj;
+    } else {
+      data[category].push(groupObj);
+    }
+  } else {
+    const singleArr = [item.name, item.price, imageUrl];
+    if(existingIndex >= 0){
+      data[category][existingIndex] = singleArr;
+    } else {
+      data[category].push(singleArr);
+    }
+  }
+});
+}
+
+// Refresh tabs by re-generating them
+const activeTab = document.querySelector('.tabs button.active');
+const activeCategory = activeTab ? activeTab.innerText : null;
+tabsDiv.innerHTML = '';
+menuDiv.innerHTML = '';
+Object.keys(data).forEach((cat,i)=>{
+let btn=document.createElement("button");
+btn.innerText=cat;
+if(activeCategory ? cat === activeCategory : i===0)btn.classList.add("active");
+btn.onclick=()=>{
+document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+load(cat);
+};
+tabsDiv.appendChild(btn);
+});
+// Load first tab
+if(Object.keys(data).length > 0){
+const targetCategory = activeCategory && data[activeCategory] ? activeCategory : Object.keys(data)[0];
+load(targetCategory);
+}
+}
+} catch (error) {
+console.error('Error loading custom items:', error);
+}
+}
+
+// Close permanent modal when clicking outside
+document.getElementById("permanentModal").addEventListener("click", function(e){
+if(e.target === this){
+closePermanentModal();
+}
+});
+
+// Close mandi size modal when clicking outside
+document.getElementById("mandiSizeModal").addEventListener("click", function(e){
+if(e.target === this){
+closeMandiSizeModal();
+}
+});
+
+// Close beverage size modal when clicking outside
+document.getElementById("beverageSizeModal").addEventListener("click", function(e){
+if(e.target === this){
+closeBeverageSizeModal();
+}
+});
+
+// Initial render
+render();
+
+</script>
+</body>
+</html>
+
+
