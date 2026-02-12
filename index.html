@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -2113,7 +2113,7 @@ background:rgba(163, 230, 53, 0.2);
 <header class="header" role="banner">
   <h1>
   <span class="brand-s">S</span>
-  <span class="brand-amp">&amp;</span>
+  <span class="brand-amp" style="color:#f5f5f5;">&amp;</span>
   <span class="brand-h">H</span> 
   ARABIAN MANDI RESTAURANT
   </h1>
@@ -3178,20 +3178,42 @@ document.getElementById("mandiItemTitle").textContent = item.name;
 const container = document.getElementById("mandiSizesContainer");
 if(container){
   container.innerHTML = '';
-  const entries = Object.entries(item.prices || {});
-  entries.forEach(([label, price]) => {
-    const p = Number(price);
-    if(Number.isNaN(p)) return;
-    const displayLabel = formatSizeLabel(label);
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'mandi-size-btn';
-    btn.onclick = () => selectMandiSize(label);
-    btn.innerHTML = `
-    <div class="size-name">${displayLabel}</div>
-    <div class="size-price">₹<span>${p}</span></div>
-    `;
-    container.appendChild(btn);
+  const prices = item.prices || {};
+  // Desired order
+  const order = ['solo', 'duo', 'trio', 'squad'];
+  // Add in specified order first
+  order.forEach(label => {
+    if(prices[label] !== undefined) {
+      const p = Number(prices[label]);
+      if(Number.isNaN(p)) return;
+      const displayLabel = formatSizeLabel(label);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mandi-size-btn';
+      btn.onclick = () => selectMandiSize(label);
+      btn.innerHTML = `
+      <div class="size-name">${displayLabel}</div>
+      <div class="size-price">₹<span>${p}</span></div>
+      `;
+      container.appendChild(btn);
+    }
+  });
+  // Add any other sizes not in the order
+  Object.entries(prices).forEach(([label, price]) => {
+    if(!order.includes(label)) {
+      const p = Number(price);
+      if(Number.isNaN(p)) return;
+      const displayLabel = formatSizeLabel(label);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mandi-size-btn';
+      btn.onclick = () => selectMandiSize(label);
+      btn.innerHTML = `
+      <div class="size-name">${displayLabel}</div>
+      <div class="size-price">₹<span>${p}</span></div>
+      `;
+      container.appendChild(btn);
+    }
   });
   if(container.children.length === 0){
     container.innerHTML = '<div style="color:#999;font-size:13px;">No sizes available</div>';
